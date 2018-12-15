@@ -22,6 +22,12 @@ const isIncognitoWindow = () => {
     }
 }
 
+const insertCss = (css) => {
+    const style = document.createElement('style');
+    style.textContent = css;
+    document.querySelector('head').appendChild(style);
+}
+
 document.addEventListener('click', function (event) {
     const link = getLink(event.target);
 
@@ -49,3 +55,13 @@ document.addEventListener('click', function (event) {
         url: link.href
     });
 }, true);
+
+// todo: make it configurable
+if (!isIncognitoWindow()) {
+    insertCss(`
+        a[href^="http://"]:not([href^="${location.protocol}//${location.host}"]),
+        a[href^="https://"]:not([href^="${location.protocol}//${location.host}"]) {
+            outline: 3px solid lightblue !important;
+        }
+    `);
+}
