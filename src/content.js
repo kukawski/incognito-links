@@ -36,6 +36,13 @@ document.addEventListener('click', function (event) {
         return;
     }
 
+    // if ALT is pressed, assume user wants to disable extension
+    // todo: check if doesn't conflict with built-in browser features
+    // or cause weird behaviour
+    if (event.altKey) {
+        return;
+    }
+
     event.preventDefault();
 
     browser.runtime.sendMessage({
