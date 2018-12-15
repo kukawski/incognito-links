@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+    "name": "Incognito Links",
+    "version": "1.0",
+    "description": "Forces external links to open in incognito window",
+    "author": "Rafał Kukawski",
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "icons": {
+        "48": "icon.svg",
+        "96": "icon.svg"
+    },
+    "content_scripts": [
+        {
+          "matches": ["<all_urls>"],
+          "js": ["content.js"]
+        }
+    ]
+}
