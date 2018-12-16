@@ -1,0 +1,8 @@
+{
+    "extensionName": {
+        "message": "Incognito Links"
+    },
+    "extensionDescription": {
+        "message": "Force external links to open in private window."
+    }
+}

@@ -1,9 +1,10 @@
 {
     "manifest_version": 2,
-    "name": "Incognito Links",
+    "name": "__MSG_extensionName__",
     "version": "1.0",
-    "description": "Forces external links to open in incognito window",
+    "description": "__MSG_extensionDescription__",
     "author": "Rafał Kukawski",
+    "default_locale": "en",
     "background": {
         "scripts": [
             "background.js"
