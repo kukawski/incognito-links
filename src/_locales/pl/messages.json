@@ -1,0 +1,11 @@
+{
+    "extensionName": {
+        "message": "Odnośniki incognito"
+    },
+    "extensionDescription": {
+        "message": "Otwieraj odnośniki prowadzące do zewnętrznych stron w prywatnym oknie."
+    },
+    "highlightExternalLinks": {
+        "message": "Podświetlaj zewnętrzne odnośniki (funkcja eksperymentalna)"
+    }
+}
