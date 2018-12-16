@@ -49,12 +49,19 @@ document.addEventListener('click', function (event) {
         return;
     }
 
+    // if event marked as defaultPrevented
+    // in most cases it will mean that a page script
+    // is handling the click event
+    if (event.defaultPrevented) {
+        return;
+    }
+
     event.preventDefault();
 
     browser.runtime.sendMessage({
         url: link.href
     });
-}, true);
+}, false);
 
 // todo: make it configurable
 if (!isIncognitoWindow()) {
