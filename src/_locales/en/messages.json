@@ -4,5 +4,8 @@
     },
     "extensionDescription": {
         "message": "Force external links to open in private window."
+    },
+    "highlightExternalLinks": {
+        "message": "Highlight external links (experimental)"
     }
 }

@@ -4,6 +4,9 @@
     "version": "1.0",
     "description": "__MSG_extensionDescription__",
     "author": "Rafał Kukawski",
+    "permissions": [
+        "storage"
+    ],
     "default_locale": "en",
     "background": {
         "scripts": [
@@ -20,5 +23,9 @@
           "js": ["content.js"],
           "all_frames": true
         }
-    ]
+    ],
+    "options_ui": {
+        "page": "settings.html",
+        "browser_style": true
+    }
 }

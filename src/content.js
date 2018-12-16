@@ -63,12 +63,19 @@ document.addEventListener('click', function (event) {
     });
 }, false);
 
-// todo: make it configurable
-if (!isIncognitoWindow()) {
-    insertCss(`
-        a[href^="http://"]:not([href^="${location.protocol}//${location.host}"]),
-        a[href^="https://"]:not([href^="${location.protocol}//${location.host}"]) {
-            outline: 3px solid lightblue !important;
-        }
-    `);
-}
+(async function () {
+    const defaultSettings = {
+        highlightExternalLinks: false
+    };
+
+    const userSettings = await browser.storage.local.get(defaultSettings);
+
+    if (!isIncognitoWindow() && userSettings.highlightExternalLinks) {
+        insertCss(`
+            a[href^="http://"]:not([href^="${location.protocol}//${location.host}"]),
+            a[href^="https://"]:not([href^="${location.protocol}//${location.host}"]) {
+                outline: 3px solid lightblue !important;
+            }
+        `);
+    }
+}());
