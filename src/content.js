@@ -28,7 +28,7 @@ const insertCss = (css) => {
     document.querySelector('head').appendChild(style);
 }
 
-document.addEventListener('click', function (event) {
+const handleClick = (event) => {
     const link = getLink(event.target);
 
     if (!link || !isExternalLink(link) || isIncognitoWindow()) {
@@ -61,14 +61,37 @@ document.addEventListener('click', function (event) {
     browser.runtime.sendMessage({
         url: link.href
     });
-}, false);
+};
 
 (async function () {
     const defaultSettings = {
-        highlightExternalLinks: false
+        highlightExternalLinks: false,
+        handleAllExternalLinks: false
     };
 
     const userSettings = await browser.storage.local.get(defaultSettings);
+
+    browser.storage.onChanged.addListener((changes) => {
+        Object.keys(changes).forEach(key => {
+            userSettings[key] = changes[key].newValue;
+        });
+    });
+
+    document.addEventListener('click', (event) => {
+        if (event.eventPhase === Event.CAPTURING_PHASE && !userSettings.handleAllExternalLinks) {
+            return;
+        }
+
+        handleClick(event);
+    }, true);
+
+    document.addEventListener('click', (event) => {
+        if (event.eventPhase === Event.BUBBLING_PHASE && userSettings.handleAllExternalLinks) {
+            return;
+        }
+
+        handleClick(event);
+    }, false);
 
     if (!isIncognitoWindow() && userSettings.highlightExternalLinks) {
         insertCss(`

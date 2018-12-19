@@ -7,5 +7,8 @@
     },
     "highlightExternalLinks": {
         "message": "Podświetlaj zewnętrzne odnośniki (funkcja eksperymentalna)"
+    },
+    "handleAllExternalLinks": {
+        "message": "Alternatywny sposób obsługi odnośników"
     }
 }
